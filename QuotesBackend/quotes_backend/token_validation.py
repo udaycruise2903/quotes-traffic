@@ -25,7 +25,7 @@ def generate_token_header(username, private_key):
     }
     token = encode_token(payload, private_key)
     token = token.decode('utf8')
-    return f'Bearer' {token}'
+    return f'Bearer {token}'
 
 
 def validate_token_header(header, public_key):

@@ -1,10 +1,10 @@
 import http.client
 from datetime import datetime
-from flask_restplus import Namespace, Resource, fields
+from flask_restx import Resource, fields, Namespace
 from quotes_backend import config
 from quotes_backend.models import QuoteModel
 from quotes_backend.token_validation import validate_token_header
-from quote_backend.db import db 
+from quotes_backend.db import db 
 from flask import abort
 
 

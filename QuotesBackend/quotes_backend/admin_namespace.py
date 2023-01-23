@@ -1,4 +1,7 @@
 import http.client
+from flask_restx import Namespace, Resource
+from quotes_backend.models import QuoteModel
+from quotes_backend.db import db
 
 admin_namespace = Namespace('admin', description='Admin operations')
 
