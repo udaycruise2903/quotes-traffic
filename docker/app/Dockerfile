@@ -15,7 +15,7 @@ RUN pip3 install --upgrade pip
 
 RUN pip3 install uwsgi==2.0.18
 
-COPY quotestraffic/Pipfile /opt/requirements.txt
+COPY /requirements.txt /opt/
 RUN pip3 install -r /opt/requirements.txt
 
 

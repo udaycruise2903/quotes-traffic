@@ -1,0 +1,51 @@
+version: '3.10'
+
+services: 
+    # Development related
+    test-sqlite:
+        environment: 
+            - PYTHONDONTWRITEBYTECODE=1
+        build: 
+            dockerfile: docker/app/Dockerfile
+            context: .
+        entrypoint: pytest
+        volumes:
+            - ./QuotesBackend:/opt/code
+
+    test-postgresql:
+        env_file: environment.env
+        environment: 
+            - PYTHONDONTWRITEBYTECODE=1
+        build: 
+            dockerfile: docker/app/Dockerfile
+            context: .
+        entrypoint: pytest
+        depends_on:
+            - db
+        volumes:
+            - ./QuotesBackend:/opt/code
+
+    db: 
+        build:
+            context: .
+            dockerfile: docker/db/Dockerfile
+            args:
+                # after changing these values, 
+                # rebuild the container
+                - POSTGRES_DB=quotes
+                - POSTGRES_USER=postgres
+                - POSRGRES_PASSWORD=password
+                - POSTGRES_PORT=5432
+        ports:
+            - "5432:5432"
+
+    server:
+        env_file: environment.env
+        image: quotes_server
+        build:
+            context: .
+            dockerfile: docker/app/Dockerfile
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db

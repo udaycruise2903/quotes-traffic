@@ -1,8 +1,8 @@
 import pytest 
 import http.client 
-from quotes_backend import create_app
+from quotes_backend.app import create_app
 from quotes_backend import token_validation
-from faker import faker
+from faker import Faker
 fake = Faker()
 
 @pytest.fixture

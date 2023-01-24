@@ -27,7 +27,7 @@ def test_create_me_quote(client):
     response = client.post('/api/me/quotes/', data=new_quote, headers = headers)
     result = response.json
 
-    assert.http.client.CREATED == response.status_code
+    assert http.client.CREATED == response.status_code
 
     expected = {
         'id': ANY,
@@ -64,7 +64,7 @@ def test_list_me_quotes(client, quote_fixture):
 
     result = response.json
 
-    assert.http.client.CREATED == response.status_code
+    assert http.client.CREATED == response.status_code
 
     # Get the quotes of the user
     response = client.get('/api/me/quotes/', headers = headers)

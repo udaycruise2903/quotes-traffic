@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 flask = "*"
-flask-restplus = "*"
 flask-sqlalchemy = "*"
 pytest-flask = "*"
 freezegun = "*"
@@ -15,6 +14,8 @@ pyjwt = "*"
 cryptography = "*"
 parse = "*"
 werkzeug = "*"
+flask-restx = "*"
+psycopg2 = "*"
 
 [dev-packages]
 

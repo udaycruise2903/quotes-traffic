@@ -82,7 +82,7 @@ search_parser.add_argument('search', type=str,required=False,
                             help='search in the text of quotes')
 
 
-@api_namespace.route('/quotes')
+@api_namespace.route('/quotes/')
 class QuoteList(Resource):
 
     @api_namespace.doc('list_quotes')
@@ -96,7 +96,8 @@ class QuoteList(Resource):
         search_param = args['search']
         query = QuoteModel.query
         if search_param:
-            query = (query.filter(QuoteModel.text.contains(search_param)))
+            param = f'%{search_param}%'
+            query = (query.filter(QuoteModel.text.ilike(param)))
         
         query = query.order_by('id')
         quotes = query.all()
